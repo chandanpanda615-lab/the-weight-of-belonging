@@ -1,6 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import { getCollection, render } from "astro:content";
+const base = import.meta.env.BASE_URL;
 
 export async function getStaticPaths() {
   const issues = await getCollection("dispatch");
@@ -29,7 +30,7 @@ const { title, vol, issue: num, date, heroPhoto, heroAlt, heroCaption, lede } = 
   </div>
 
   <div class="hero-photo photo-frame">
-    <img src={heroPhoto} alt={heroAlt} />
+    <img src={`${base}${heroPhoto.replace(/^\//, '')}`} alt={heroAlt} />
     <div class="caption">{heroCaption}</div>
   </div>
 
