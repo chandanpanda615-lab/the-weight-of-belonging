@@ -1,0 +1,47 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = "A village in Kandhamal. An invitation to stay." } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title} — The Weight of Belonging</title>
+  <meta name="description" content={description} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      <a href="/" class="mark">the weight <span class="amp">&</span> belonging</a>
+      <nav>
+        <a href="/" aria-current={currentPath === "/" ? "page" : undefined}>The Letter</a>
+        <a href="/dispatch" aria-current={currentPath.startsWith("/dispatch") ? "page" : undefined}>Dispatch</a>
+        <a href="mailto:chandanpanda615@gmail.com">Write to me</a>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <div class="mosaic-footer">
+      <div class="photo-frame"><img src="/photos/01-river-fisherman.jpeg" alt="" /></div>
+      <div class="photo-frame"><img src="/photos/04-mist-paddy.jpeg" alt="" /></div>
+      <div class="photo-frame"><img src="/photos/10-paddy-path.jpeg" alt="" /></div>
+      <div class="photo-frame"><img src="/photos/13-temple-collage.jpeg" alt="" /></div>
+      <div class="photo-frame"><img src="/photos/14-mist-cliff.jpeg" alt="" /></div>
+      <div class="photo-frame"><img src="/photos/11-wide-fields.jpeg" alt="" /></div>
+    </div>
+  </div>
+</body>
+</html>
+
+<style is:global>
+  @import "../styles/global.css";
+</style>

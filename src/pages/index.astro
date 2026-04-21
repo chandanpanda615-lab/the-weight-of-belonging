@@ -1,0 +1,186 @@
+---
+import Base from "../layouts/Base.astro";
+---
+<Base title="The Letter">
+
+<article class="letter">
+
+  <!-- Hero -->
+  <div class="hero-band">
+    <div class="photo-frame hero-frame">
+      <img src="/photos/01-river-fisherman.jpeg" alt="Red-soil river, fisherman with bamboo net, Saranagada" />
+      <div class="coord">20.42°N · 84.18°E · saranagada</div>
+      <div class="overprint">This is not a tour.<br />There is a village.<br />I would like to host you.</div>
+    </div>
+  </div>
+
+  <div class="letter-body">
+
+    <div class="salutation">Dear stranger,</div>
+
+    <p class="lede">
+      There is a village in <span class="odia">Kandhamal<span class="odia-tooltip">Kandhamal, Odisha</span></span> — red soil, a small river that swells in July, a temple that gathers the street at dusk — and there is me, writing to you from Bangalore while I finish my articleship. When that is done, in November of next year, I will be home. If you would like to come then, I would like to host you.
+    </p>
+
+    <h2><span class="ornament">i.</span>Who is writing</h2>
+    <p>My name is Chandan. I am a CA finalist. I was born in Saranagada, a village of maybe six hundred people, three or four streets, one <span class="odia">mandir<span class="odia-tooltip">temple</span></span> that matters, and a <span class="odia">haat<span class="odia-tooltip">weekly market</span></span> that still runs on Tuesdays.</p>
+    <p>I left, like most of us do. I am writing this because I do not want to lose what I left.</p>
+
+    <div class="photo-strip-2">
+      <div class="photo-frame"><img src="/photos/10-paddy-path.jpeg" alt="Paddy fields with thin path" /><div class="caption">paddy · monsoon · toward the hills</div></div>
+      <div class="photo-frame"><img src="/photos/12-hills-portrait.jpeg" alt="Hills of Kandhamal" /><div class="caption">the hills behind the village</div></div>
+    </div>
+
+    <h2><span class="ornament">ii.</span>The village, plainly</h2>
+    <p>There is a river. There are farmers. The rains come heavy and the work stops and the old men sit on a <span class="odia">charpai<span class="odia-tooltip">woven cot</span></span> and argue about nothing. There is no reliable internet past the mandir. The school is dying — new English-medium schools have opened in the next town and nobody knows who is teaching well and who is just collecting fees.</p>
+    <p>There are boys my age who do not work, who drink <span class="odia">handia<span class="odia-tooltip">rice beer</span></span> from afternoon, who have lately been moving <span class="odia">ganja<span class="odia-tooltip">cannabis</span></span> to the cities. Some have been caught. Some have served jail. Their fathers do not speak of it.</p>
+    <p>And still — the moon is enormous here. The sky is clear. People laugh loudly. A stranger is fed first. I am not selling you anything. I am telling you what is there.</p>
+
+    <div class="photo-frame wide-frame"><img src="/photos/11-wide-fields.jpeg" alt="Wide fields of Saranagada" /><div class="caption">the fields · late monsoon</div></div>
+
+    <h2><span class="ornament">iii.</span>What a day looks like</h2>
+    <p>We will not plan. Roughly: I wake before the sun. There is tea. We walk. The <span class="odia">haat<span class="odia-tooltip">weekly market</span></span>, if it is a Tuesday. The mandir in the evening where the community gathers and I sit on the committee that plans the next festival. An auto to the next village costs twenty rupees. If there is a wedding we will help with the wedding. If someone's buffalo has calved we will go look.</p>
+
+    <div class="photo-strip-3">
+      <div class="photo-frame"><img src="/photos/05-cooking-friends.jpeg" alt="Friends cooking in the open" /><div class="caption">cooking · outside · afternoon</div></div>
+      <div class="photo-frame"><img src="/photos/13-temple-collage.jpeg" alt="Temple at dusk" /><div class="caption">the mandir · dusk</div></div>
+      <div class="photo-frame"><img src="/photos/07-sunset-tree.jpeg" alt="Sunset from the field" /><div class="caption">sunset · from the field</div></div>
+    </div>
+
+    <h2><span class="ornament">iv.</span>What I ask of you</h2>
+    <p>Come without a camera pointed at poverty. Come with a notebook if you write. Come willing to eat what is cooked, walk where we walk, sleep in a room that is clean but not designed. Stay three days, or ten, or a month — you propose, I respond. There is no price list. We will work it out like two adults writing letters.</p>
+
+    <div class="write-block">
+      <div class="write-label">§ Write to me</div>
+      <p>Tell me your name, where you are writing from, who you are, roughly when you would like to come, and — why this village, why now.</p>
+      <a class="write-cta" href="mailto:chandanpanda615@gmail.com?subject=I%20would%20like%20to%20visit%20Saranagada">write a letter →</a>
+    </div>
+
+    <div class="signoff">
+      yours, from a desk in Bangalore,<br />
+      <span class="signoff-meta">· written April 2026 · first guest, after November 2027 ·</span>
+    </div>
+
+  </div>
+</article>
+
+</Base>
+
+<style>
+.letter { max-width: 720px; margin: 0 auto; }
+
+.hero-band { margin-bottom: 48px; }
+.hero-frame { position: relative; aspect-ratio: 16 / 7; overflow: hidden; }
+.hero-frame img { width: 100%; height: 100%; object-fit: cover; }
+.coord {
+  position: absolute;
+  bottom: 12px;
+  left: 16px;
+  font-family: var(--mono);
+  font-size: var(--fs-xxs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(244,236,220,0.85);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+.overprint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--hand);
+  font-size: clamp(20px, 3.5vw, 34px);
+  color: #f4ecdc;
+  text-align: center;
+  line-height: 1.4;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+  width: 90%;
+}
+
+.letter-body { padding: 0 4px; }
+
+.salutation {
+  font-family: var(--hand);
+  font-size: var(--fs-xl);
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+}
+.lede { font-size: var(--fs-md); line-height: 1.75; }
+
+h2 {
+  font-size: var(--fs-lg);
+  font-weight: 500;
+  margin: 40px 0 14px;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 8px;
+}
+
+.photo-strip-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 28px 0;
+}
+.photo-strip-2 .photo-frame { aspect-ratio: 4/3; }
+
+.photo-strip-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin: 28px 0;
+}
+.photo-strip-3 .photo-frame { aspect-ratio: 4/3; }
+
+.wide-frame { aspect-ratio: 16/5; margin: 28px 0; }
+
+.write-block {
+  margin: 44px 0;
+  padding: 24px 28px;
+  background: var(--paper-deep);
+  border-left: 3px solid var(--accent);
+}
+.write-label {
+  font-family: var(--mono);
+  font-size: var(--fs-xxs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 10px;
+}
+.write-cta {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+  margin-top: 8px;
+}
+.write-cta:hover { text-decoration: none; opacity: 0.75; }
+
+.signoff {
+  font-style: italic;
+  font-size: var(--fs-md);
+  margin: 48px 0 20px;
+  color: var(--ink-soft);
+  line-height: 1.8;
+}
+.signoff-meta {
+  display: block;
+  font-family: var(--mono);
+  font-size: var(--fs-xxs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-style: normal;
+  margin-top: 8px;
+}
+
+@media (max-width: 600px) {
+  .photo-strip-2, .photo-strip-3 { grid-template-columns: 1fr; }
+  .wide-frame { aspect-ratio: 4/3; }
+  .hero-frame { aspect-ratio: 4/3; }
+}
+</style>

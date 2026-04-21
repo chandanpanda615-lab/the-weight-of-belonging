@@ -1,0 +1,137 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const issues = await getCollection("dispatch");
+  return issues.map((issue) => ({
+    params: { slug: issue.id },
+    props: { issue },
+  }));
+}
+
+const { issue } = Astro.props;
+const { Content } = await render(issue);
+const { title, vol, issue: num, date, heroPhoto, heroAlt, heroCaption, lede } = issue.data;
+---
+<Base title={title} description={lede}>
+
+<article class="dispatch-article">
+
+  <div class="article-header">
+    <div class="dateline">
+      <span>Vol. {vol} · No. {num}</span>
+      <span>Saranagada · Kandhamal · Odisha</span>
+      <span>{date}</span>
+    </div>
+    <h1 class="article-title">{title}</h1>
+    <div class="byline">by Chandan · essay</div>
+  </div>
+
+  <div class="hero-photo photo-frame">
+    <img src={heroPhoto} alt={heroAlt} />
+    <div class="caption">{heroCaption}</div>
+  </div>
+
+  <div class="article-body">
+    <Content />
+  </div>
+
+  <hr class="rule" />
+
+  <div class="article-footer">
+    <a href="/dispatch" class="back-link">← all dispatches</a>
+    <div class="invitation">
+      <div class="inv-kicker">to the stranger who has read this far —</div>
+      <p>If you would like to stay in this village for some days, write to me. There is no price list, no package. You propose; I respond. First guest, after November 2027.</p>
+      <a href="mailto:chandanpanda615@gmail.com?subject=I%20would%20like%20to%20visit%20Saranagada" class="write-cta">write a letter →</a>
+    </div>
+  </div>
+
+</article>
+
+</Base>
+
+<style>
+.dispatch-article { max-width: 680px; margin: 0 auto; }
+
+.article-header { margin-bottom: 28px; }
+.dateline {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: var(--fs-xxs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 14px;
+}
+.article-title {
+  font-size: clamp(var(--fs-xl), 4vw, var(--fs-2xl));
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 10px;
+}
+.byline {
+  font-family: var(--mono);
+  font-size: var(--fs-xxs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.hero-photo {
+  aspect-ratio: 16/7;
+  margin-bottom: 36px;
+}
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.article-body {
+  font-size: var(--fs-md);
+  line-height: 1.75;
+  color: var(--ink);
+}
+.article-body :global(p) { margin-bottom: 1.4em; }
+.article-body :global(em) { font-style: italic; }
+
+.article-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 40px;
+}
+.back-link {
+  font-family: var(--mono);
+  font-size: var(--fs-xxs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.back-link:hover { color: var(--accent); text-decoration: none; }
+
+.invitation {
+  padding: 24px 28px;
+  background: var(--paper-deep);
+  border-left: 3px solid var(--accent);
+}
+.inv-kicker {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: var(--fs-md);
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+.invitation p { font-size: var(--fs-sm); margin-bottom: 14px; }
+.write-cta {
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+}
+.write-cta:hover { text-decoration: none; opacity: 0.75; }
+</style>
