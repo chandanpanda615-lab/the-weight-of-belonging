@@ -2,43 +2,76 @@
 interface Props {
   title: string;
   description?: string;
+  image?: string;
 }
-const { title, description = "A village in Kandhamal. An invitation to stay." } = Astro.props;
+
+const {
+  title,
+  description = "A village in Kandhamal. An invitation to stay.",
+  image = "photos/01-river-fisherman.jpeg",
+} = Astro.props;
+
 const currentPath = Astro.url.pathname;
 const base = import.meta.env.BASE_URL;
+const basePath = base.endsWith("/") ? base : `${base}/`;
+const pathFor = (path = "") => `${basePath}${path.replace(/^\/+/, "")}`;
+const fullTitle = `${title} — The Weight of Belonging`;
+const siteUrl = Astro.site ?? new URL("https://chandanpanda615-lab.github.io");
+const canonicalURL = new URL(Astro.url.pathname, siteUrl).toString();
+const imageURL = new URL(pathFor(image), siteUrl).toString();
+const isHome = currentPath === base || currentPath === basePath;
+const isDispatch = currentPath.startsWith(pathFor("dispatch"));
 ---
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{title} — The Weight of Belonging</title>
+  <title>{fullTitle}</title>
   <meta name="description" content={description} />
-  <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+  <link rel="canonical" href={canonicalURL} />
+  <link rel="icon" type="image/svg+xml" href={pathFor("favicon.svg")} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="The Weight of Belonging" />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:image" content={imageURL} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={imageURL} />
 </head>
 <body>
-  <div class="shell">
-    <header class="masthead">
-      <a href={`${base}`} class="mark">the weight <span class="amp">&</span> belonging</a>
-      <nav>
-        <a href={`${base}`} aria-current={currentPath === `${base}` || currentPath === `${base}/` ? "page" : undefined}>The Letter</a>
-        <a href={`${base}dispatch`} aria-current={currentPath.startsWith(`${base}dispatch`) ? "page" : undefined}>Dispatch</a>
-        <a href="mailto:chandanpanda615@gmail.com">Write to me</a>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="site-frame">
+    <header class="site-header">
+      <a href={pathFor()} class="brand" aria-label="The Weight of Belonging home">
+        <span class="brand-primary">The Weight</span>
+        <span class="brand-secondary">of Belonging</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href={pathFor()} aria-current={isHome ? "page" : undefined}>Letter</a>
+        <a href={pathFor("dispatch")} aria-current={isDispatch ? "page" : undefined}>Dispatch</a>
+        <a href="mailto:chandanpanda615@gmail.com">Write</a>
       </nav>
     </header>
 
-    <main>
+    <main id="content">
       <slot />
     </main>
 
-    <div class="mosaic-footer">
-      <div class="photo-frame"><img src={`${base}photos/01-river-fisherman.jpeg`} alt="" /></div>
-      <div class="photo-frame"><img src={`${base}photos/04-mist-paddy.jpeg`} alt="" /></div>
-      <div class="photo-frame"><img src={`${base}photos/10-paddy-path.jpeg`} alt="" /></div>
-      <div class="photo-frame"><img src={`${base}photos/13-temple-collage.jpeg`} alt="" /></div>
-      <div class="photo-frame"><img src={`${base}photos/14-mist-cliff.jpeg`} alt="" /></div>
-      <div class="photo-frame"><img src={`${base}photos/11-wide-fields.jpeg`} alt="" /></div>
-    </div>
+    <footer class="site-footer">
+      <div>
+        <p class="footer-kicker">Saranagada · Kandhamal · Odisha</p>
+        <p class="footer-title">An invitation to arrive slowly.</p>
+      </div>
+      <div class="footer-links">
+        <a href={pathFor()}>Letter</a>
+        <a href={pathFor("dispatch")}>Dispatch</a>
+        <a href="mailto:chandanpanda615@gmail.com">Write</a>
+      </div>
+    </footer>
   </div>
 </body>
 </html>

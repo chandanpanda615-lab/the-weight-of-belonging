@@ -1,0 +1,99 @@
+---
+import Base from "../layouts/Base.astro";
+
+const base = import.meta.env.BASE_URL;
+const basePath = base.endsWith("/") ? base : `${base}/`;
+const pathFor = (path = "") => `${basePath}${path.replace(/^\/+/, "")}`;
+---
+<Base
+  title="Page Not Found"
+  description="The page could not be found, but the letter and dispatches are still here."
+  image="photos/14-mist-cliff.jpeg"
+>
+  <section class="not-found full-bleed">
+    <img src={pathFor("photos/14-mist-cliff.jpeg")} alt="Mist over a cliff in Kandhamal" />
+    <div class="not-found-shade"></div>
+    <div class="not-found-inner">
+      <p class="section-kicker">404</p>
+      <h1>This path does not lead to the village.</h1>
+      <p>
+        The page may have moved, or the address may have been copied unevenly.
+        The letter and dispatches are still here.
+      </p>
+      <div class="links">
+        <a class="primary-link" href={pathFor()}>Return to the letter</a>
+        <a class="secondary-link" href={pathFor("dispatch")}>Read the dispatches</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+.not-found {
+  position: relative;
+  min-height: 68svh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--forest-deep);
+  color: var(--paper-soft);
+}
+
+.not-found > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.not-found-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(16, 38, 31, 0.9), rgba(16, 38, 31, 0.34)),
+    linear-gradient(0deg, rgba(16, 38, 31, 0.72), rgba(16, 38, 31, 0.08));
+}
+
+.not-found-inner {
+  position: relative;
+  width: min(860px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 78px 0;
+}
+
+.not-found h1 {
+  max-width: 720px;
+  margin-bottom: 18px;
+  font-size: var(--fs-3xl);
+  line-height: 1;
+  font-weight: 500;
+}
+
+.not-found p:not(.section-kicker) {
+  max-width: 580px;
+  color: rgba(255, 250, 240, 0.84);
+  font-size: var(--fs-lg);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+@media (max-width: 700px) {
+  .not-found-inner {
+    width: min(100% - 28px, 860px);
+  }
+
+  .not-found h1 {
+    font-size: var(--fs-2xl);
+  }
+
+  .not-found p:not(.section-kicker) {
+    font-size: var(--fs-md);
+  }
+}
+</style>

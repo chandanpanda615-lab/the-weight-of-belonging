@@ -1,7 +1,10 @@
 ---
 import Base from "../../layouts/Base.astro";
 import { getCollection, render } from "astro:content";
+
 const base = import.meta.env.BASE_URL;
+const basePath = base.endsWith("/") ? base : `${base}/`;
+const pathFor = (path = "") => `${basePath}${path.replace(/^\/+/, "")}`;
 
 export async function getStaticPaths() {
   const issues = await getCollection("dispatch");
@@ -15,124 +18,222 @@ const { issue } = Astro.props;
 const { Content } = await render(issue);
 const { title, vol, issue: num, date, heroPhoto, heroAlt, heroCaption, lede } = issue.data;
 ---
-<Base title={title} description={lede}>
+<Base title={title} description={lede} image={heroPhoto}>
+  <article class="dispatch-article">
+    <header class="article-hero full-bleed">
+      <img src={pathFor(heroPhoto)} alt={heroAlt} />
+      <div class="article-shade"></div>
+      <div class="article-hero-inner">
+        <a class="back-link" href={pathFor("dispatch")}>All dispatches</a>
+        <p class="eyebrow">Vol. {vol} · No. {num} · {date}</p>
+        <h1>{title}</h1>
+        <p>{lede}</p>
+      </div>
+      <div class="article-caption">{heroCaption}</div>
+    </header>
 
-<article class="dispatch-article">
+    <div class="article-shell">
+      <aside class="article-rail">
+        <p class="section-kicker">Dateline</p>
+        <p>Saranagada · Kandhamal · Odisha</p>
+        <p>By Chandan</p>
+      </aside>
 
-  <div class="article-header">
-    <div class="dateline">
-      <span>Vol. {vol} · No. {num}</span>
-      <span>Saranagada · Kandhamal · Odisha</span>
-      <span>{date}</span>
+      <div class="article-body">
+        <Content />
+      </div>
     </div>
-    <h1 class="article-title">{title}</h1>
-    <div class="byline">by Chandan · essay</div>
-  </div>
 
-  <div class="hero-photo photo-frame">
-    <img src={`${base}${heroPhoto.replace(/^\//, '')}`} alt={heroAlt} />
-    <div class="caption">{heroCaption}</div>
-  </div>
-
-  <div class="article-body">
-    <Content />
-  </div>
-
-  <hr class="rule" />
-
-  <div class="article-footer">
-    <a href="/dispatch" class="back-link">← all dispatches</a>
-    <div class="invitation">
-      <div class="inv-kicker">to the stranger who has read this far —</div>
-      <p>If you would like to stay in this village for some days, write to me. There is no price list, no package. You propose; I respond. First guest, after November 2027.</p>
-      <a href="mailto:chandanpanda615@gmail.com?subject=I%20would%20like%20to%20visit%20Saranagada" class="write-cta">write a letter →</a>
-    </div>
-  </div>
-
-</article>
-
+    <section class="article-invitation">
+      <div>
+        <p class="section-kicker">To the stranger who has read this far</p>
+        <h2>Come for the village, not for a package.</h2>
+        <p>
+          If you would like to stay in this village for some days, write to me.
+          There is no price list, no package. You propose; I respond. First guest,
+          after November 2027.
+        </p>
+      </div>
+      <a class="primary-link" href="mailto:chandanpanda615@gmail.com?subject=I%20would%20like%20to%20visit%20Saranagada">Write a letter</a>
+    </section>
+  </article>
 </Base>
 
 <style>
-.dispatch-article { max-width: 680px; margin: 0 auto; }
-
-.article-header { margin-bottom: 28px; }
-.dateline {
+.dispatch-article {
   display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  font-family: var(--mono);
-  font-size: var(--fs-xxs);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  margin-bottom: 14px;
-}
-.article-title {
-  font-size: clamp(var(--fs-xl), 4vw, var(--fs-2xl));
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  margin: 0 0 10px;
-}
-.byline {
-  font-family: var(--mono);
-  font-size: var(--fs-xxs);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
+  flex-direction: column;
+  gap: 72px;
 }
 
-.hero-photo {
-  aspect-ratio: 16/7;
-  margin-bottom: 36px;
+.article-hero {
+  position: relative;
+  min-height: 62svh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--forest-deep);
+  color: var(--paper-soft);
 }
-.hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.article-hero > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.article-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(16, 38, 31, 0.88), rgba(16, 38, 31, 0.34)),
+    linear-gradient(0deg, rgba(16, 38, 31, 0.75), rgba(16, 38, 31, 0.08));
+}
+
+.article-hero-inner {
+  position: relative;
+  width: min(980px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 72px 0 78px;
+}
+
+.back-link {
+  display: inline-flex;
+  margin-bottom: 24px;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  color: rgba(255, 250, 240, 0.78);
+  text-transform: uppercase;
+}
+
+.back-link:hover {
+  color: var(--paper-soft);
+}
+
+.article-hero h1 {
+  max-width: 860px;
+  margin-bottom: 18px;
+  font-size: var(--fs-3xl);
+  line-height: 1;
+  font-weight: 500;
+}
+
+.article-hero p:not(.eyebrow) {
+  max-width: 660px;
+  color: rgba(255, 250, 240, 0.86);
+  font-size: var(--fs-lg);
+}
+
+.article-caption {
+  position: absolute;
+  right: max(20px, calc((100vw - 1180px) / 2));
+  bottom: 24px;
+  font-family: var(--mono);
+  font-size: var(--fs-xxs);
+  color: rgba(255, 250, 240, 0.68);
+  text-transform: uppercase;
+}
+
+.article-shell {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 720px);
+  gap: 54px;
+  justify-content: center;
+  align-items: start;
+}
+
+.article-rail {
+  position: sticky;
+  top: 112px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line-strong);
+  color: var(--ink-soft);
+  font-size: var(--fs-sm);
+}
 
 .article-body {
   font-size: var(--fs-md);
-  line-height: 1.75;
+  line-height: 1.82;
   color: var(--ink);
 }
-.article-body :global(p) { margin-bottom: 1.4em; }
-.article-body :global(em) { font-style: italic; }
 
-.article-footer {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  margin-top: 40px;
+.article-body :global(p) {
+  margin-bottom: 1.45em;
 }
-.back-link {
-  font-family: var(--mono);
-  font-size: var(--fs-xxs);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-}
-.back-link:hover { color: var(--accent); text-decoration: none; }
 
-.invitation {
-  padding: 24px 28px;
-  background: var(--paper-deep);
-  border-left: 3px solid var(--accent);
+.article-body :global(p:first-child) {
+  font-size: var(--fs-xl);
+  line-height: 1.55;
+  color: var(--forest-deep);
 }
-.inv-kicker {
-  font-family: var(--serif);
+
+.article-body :global(em) {
   font-style: italic;
-  font-size: var(--fs-md);
+}
+
+.article-invitation {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 36px;
+  align-items: end;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 38px;
+  background: rgba(255, 250, 240, 0.78);
+  border: 1px solid var(--line);
+}
+
+.article-invitation h2 {
+  margin-bottom: 12px;
+  font-size: var(--fs-xl);
+  font-weight: 500;
+  color: var(--forest-deep);
+}
+
+.article-invitation p:not(.section-kicker) {
+  margin-bottom: 0;
   color: var(--ink-soft);
-  margin-bottom: 10px;
 }
-.invitation p { font-size: var(--fs-sm); margin-bottom: 14px; }
-.write-cta {
-  font-family: var(--mono);
-  font-size: var(--fs-xs);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-  border-bottom: 1px solid var(--accent);
-  padding-bottom: 2px;
+
+@media (max-width: 860px) {
+  .article-hero h1 {
+    font-size: var(--fs-2xl);
+  }
+
+  .article-hero p:not(.eyebrow) {
+    font-size: var(--fs-md);
+  }
+
+  .article-shell,
+  .article-invitation {
+    grid-template-columns: 1fr;
+  }
+
+  .article-rail {
+    position: static;
+  }
 }
-.write-cta:hover { text-decoration: none; opacity: 0.75; }
+
+@media (max-width: 560px) {
+  .article-hero-inner {
+    width: min(100% - 28px, 980px);
+    padding: 62px 0 76px;
+  }
+
+  .article-caption {
+    left: 14px;
+    right: auto;
+    bottom: 18px;
+  }
+
+  .article-body :global(p:first-child) {
+    font-size: var(--fs-md);
+  }
+
+  .article-invitation {
+    padding: 28px;
+  }
+}
 </style>

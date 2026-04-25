@@ -1,43 +1,71 @@
-# Astro Starter Kit: Minimal
+# The Weight of Belonging
+
+An Astro site for a personal letter and dispatches from Saranagada, a village in Kandhamal, Odisha. The site is built as a quiet, photo-led publication: part invitation, part field note, part archive of returning home.
+
+Live site:
+
+https://chandanpanda615-lab.github.io/the-weight-of-belonging/
+
+## What is inside
+
+- `src/pages/index.astro` - the main letter.
+- `src/pages/dispatch/` - the dispatch listing and individual dispatch route.
+- `src/content/dispatch/` - Markdown dispatch issues.
+- `src/layouts/Base.astro` - shared page shell, navigation, metadata, and footer photos.
+- `src/styles/global.css` - global typography, color, and layout rules.
+- `public/photos/` - static photo assets used by the site.
+
+## Local development
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The dev server usually runs at `http://localhost:4321`.
 
-## 🚀 Project Structure
+## Production build
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```sh
+npm run build
+npm run preview
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+The site is configured for GitHub Pages in `astro.config.mjs`:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```js
+site: "https://chandanpanda615-lab.github.io",
+base: "/the-weight-of-belonging",
+output: "static"
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+Because the site is served from a subpath, internal asset links should use Astro's `import.meta.env.BASE_URL` instead of hard-coded root paths like `/photos/...`.
 
-## 🧞 Commands
+## Adding a dispatch
 
-All commands are run from the root of the project, from a terminal:
+Create a new Markdown file in `src/content/dispatch/`, for example:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```md
+---
+title: A title for the dispatch
+vol: 1
+issue: 4
+date: "May 2026"
+lede: "A one-sentence preview for the dispatch index."
+heroPhoto: "/photos/06-group-road.jpeg"
+heroAlt: "Clear description of the hero photo"
+heroCaption: "short caption"
+---
 
-## 👀 Want to learn more?
+Write the dispatch here.
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Keep `vol` and `issue` numeric so the dispatch index can sort issues correctly.
+
+## Photo notes
+
+Photos live in `public/photos/` and are served as static files. Before adding more images, resize or compress them so the live site stays fast on mobile connections.
+
+## Deployment
+
+Deployments run through GitHub Actions with `.github/workflows/deploy.yml`. Every push to `main` builds the Astro site and publishes `dist/` to GitHub Pages.

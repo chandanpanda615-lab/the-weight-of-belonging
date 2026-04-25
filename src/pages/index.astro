@@ -1,187 +1,494 @@
 ---
 import Base from "../layouts/Base.astro";
+
 const base = import.meta.env.BASE_URL;
+const basePath = base.endsWith("/") ? base : `${base}/`;
+const pathFor = (path = "") => `${basePath}${path.replace(/^\/+/, "")}`;
 ---
-<Base title="The Letter">
+<Base
+  title="The Letter"
+  description="A personal invitation to Saranagada, Kandhamal: not a tour package, but a slower way to arrive."
+  image="photos/01-river-fisherman.jpeg"
+>
+  <article class="home">
+    <section class="home-hero full-bleed" aria-label="The Weight of Belonging">
+      <img src={pathFor("photos/01-river-fisherman.jpeg")} alt="Red-soil river, fisherman with bamboo net, Saranagada" />
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Saranagada · Kandhamal · Odisha</p>
+        <h1>The Weight of Belonging</h1>
+        <p>
+          This is not a tour. There is a village. I would like to host you there,
+          slowly, after November 2027.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-link" href="#letter">Read the letter</a>
+          <a class="secondary-link" href={pathFor("dispatch")}>Open dispatches</a>
+        </div>
+      </div>
+      <div class="hero-coordinates">20.42 N · 84.18 E · Saranagada</div>
+    </section>
 
-<article class="letter">
+    <section id="letter" class="letter-intro">
+      <div class="intro-copy">
+        <p class="section-kicker">Dear stranger</p>
+        <p class="lede">
+          There is a village in <span class="odia">Kandhamal<span class="odia-tooltip">Kandhamal, Odisha</span></span>
+          — red soil, a small river that swells in July, a temple that gathers the street at dusk —
+          and there is me, writing to you from Bangalore while I finish my articleship.
+        </p>
+        <p>
+          When that is done, in November of next year, I will be home. If you would like
+          to come then, I would like to host you.
+        </p>
+      </div>
+      <aside class="arrival-notes" aria-label="Visit notes">
+        <div>
+          <span>First guest</span>
+          <strong>After Nov 2027</strong>
+        </div>
+        <div>
+          <span>Stay</span>
+          <strong>3 days to a month</strong>
+        </div>
+        <div>
+          <span>Bring</span>
+          <strong>Time, attention, humility</strong>
+        </div>
+      </aside>
+    </section>
 
-  <!-- Hero -->
-  <div class="hero-band">
-    <div class="photo-frame hero-frame">
-      <img src={`${base}photos/01-river-fisherman.jpeg`} alt="Red-soil river, fisherman with bamboo net, Saranagada" />
-      <div class="coord">20.42°N · 84.18°E · saranagada</div>
-      <div class="overprint">This is not a tour.<br />There is a village.<br />I would like to host you.</div>
-    </div>
-  </div>
+    <section class="identity-grid">
+      <div class="identity-copy">
+        <p class="section-kicker">Who is writing</p>
+        <h2>I left, like most of us do. I am writing because I do not want to lose what I left.</h2>
+        <p>
+          My name is Chandan. I am a CA finalist. I was born in Saranagada, a village
+          of maybe six hundred people, three or four streets, one
+          <span class="odia">mandir<span class="odia-tooltip">temple</span></span> that matters,
+          and a <span class="odia">haat<span class="odia-tooltip">weekly market</span></span>
+          that still runs on Tuesdays.
+        </p>
+      </div>
+      <div class="portrait-stack">
+        <figure class="media-frame tall">
+          <img src={pathFor("photos/12-hills-portrait.jpeg")} alt="Hills of Kandhamal" />
+        </figure>
+        <figure class="media-frame low">
+          <img src={pathFor("photos/10-paddy-path.jpeg")} alt="Paddy fields with a thin path" />
+        </figure>
+      </div>
+    </section>
 
-  <div class="letter-body">
+    <section class="plainly full-bleed">
+      <div class="plainly-inner">
+        <div>
+          <p class="section-kicker">The village, plainly</p>
+          <h2>There is no performance here. There is work, rain, laughter, worry, and a stranger is fed first.</h2>
+        </div>
+        <div class="plainly-text">
+          <p>
+            There is a river. There are farmers. The rains come heavy and the work stops
+            and the old men sit on a <span class="odia">charpai<span class="odia-tooltip">woven cot</span></span>
+            and argue about nothing. There is no reliable internet past the mandir.
+          </p>
+          <p>
+            The school is dying. New English-medium schools have opened in the next town
+            and nobody knows who is teaching well and who is just collecting fees.
+          </p>
+          <p>
+            There are boys my age who do not work, who drink
+            <span class="odia">handia<span class="odia-tooltip">rice beer</span></span> from afternoon,
+            who have lately been moving <span class="odia">ganja<span class="odia-tooltip">cannabis</span></span>
+            to the cities. Some have been caught. Some have served jail. Their fathers do not speak of it.
+          </p>
+          <p>
+            And still — the moon is enormous here. The sky is clear. People laugh loudly.
+            I am not selling you anything. I am telling you what is there.
+          </p>
+        </div>
+      </div>
+    </section>
 
-    <div class="salutation">Dear stranger,</div>
+    <section class="photo-river" aria-label="Photos from Saranagada">
+      <figure class="media-frame">
+        <img src={pathFor("photos/11-wide-fields.jpeg")} alt="Wide fields of Saranagada" />
+      </figure>
+      <figure class="media-frame">
+        <img src={pathFor("photos/13-temple-collage.jpeg")} alt="Temple at dusk" />
+      </figure>
+      <figure class="media-frame">
+        <img src={pathFor("photos/07-sunset-tree.jpeg")} alt="Sunset from the field" />
+      </figure>
+    </section>
 
-    <p class="lede">
-      There is a village in <span class="odia">Kandhamal<span class="odia-tooltip">Kandhamal, Odisha</span></span> — red soil, a small river that swells in July, a temple that gathers the street at dusk — and there is me, writing to you from Bangalore while I finish my articleship. When that is done, in November of next year, I will be home. If you would like to come then, I would like to host you.
-    </p>
+    <section class="day-section">
+      <div class="day-heading">
+        <p class="section-kicker">What a day looks like</p>
+        <h2>We will not plan too much.</h2>
+      </div>
+      <div class="day-list">
+        <div>
+          <span>01</span>
+          <h3>Tea before the sun</h3>
+          <p>We wake early. The village is already beginning before the light is clean.</p>
+        </div>
+        <div>
+          <span>02</span>
+          <h3>Walk to the haat</h3>
+          <p>If it is Tuesday, the weekly market decides the morning.</p>
+        </div>
+        <div>
+          <span>03</span>
+          <h3>Mandir at dusk</h3>
+          <p>The community gathers, talks, plans the next festival, and stretches the evening.</p>
+        </div>
+        <div>
+          <span>04</span>
+          <h3>Whatever arrives</h3>
+          <p>If there is a wedding we help. If someone's buffalo has calved we go look.</p>
+        </div>
+      </div>
+    </section>
 
-    <h2><span class="ornament">i.</span>Who is writing</h2>
-    <p>My name is Chandan. I am a CA finalist. I was born in Saranagada, a village of maybe six hundred people, three or four streets, one <span class="odia">mandir<span class="odia-tooltip">temple</span></span> that matters, and a <span class="odia">haat<span class="odia-tooltip">weekly market</span></span> that still runs on Tuesdays.</p>
-    <p>I left, like most of us do. I am writing this because I do not want to lose what I left.</p>
-
-    <div class="photo-strip-2">
-      <div class="photo-frame"><img src={`${base}photos/10-paddy-path.jpeg`} alt="Paddy fields with thin path" /><div class="caption">paddy · monsoon · toward the hills</div></div>
-      <div class="photo-frame"><img src={`${base}photos/12-hills-portrait.jpeg`} alt="Hills of Kandhamal" /><div class="caption">the hills behind the village</div></div>
-    </div>
-
-    <h2><span class="ornament">ii.</span>The village, plainly</h2>
-    <p>There is a river. There are farmers. The rains come heavy and the work stops and the old men sit on a <span class="odia">charpai<span class="odia-tooltip">woven cot</span></span> and argue about nothing. There is no reliable internet past the mandir. The school is dying — new English-medium schools have opened in the next town and nobody knows who is teaching well and who is just collecting fees.</p>
-    <p>There are boys my age who do not work, who drink <span class="odia">handia<span class="odia-tooltip">rice beer</span></span> from afternoon, who have lately been moving <span class="odia">ganja<span class="odia-tooltip">cannabis</span></span> to the cities. Some have been caught. Some have served jail. Their fathers do not speak of it.</p>
-    <p>And still — the moon is enormous here. The sky is clear. People laugh loudly. A stranger is fed first. I am not selling you anything. I am telling you what is there.</p>
-
-    <div class="photo-frame wide-frame"><img src={`${base}photos/11-wide-fields.jpeg`} alt="Wide fields of Saranagada" /><div class="caption">the fields · late monsoon</div></div>
-
-    <h2><span class="ornament">iii.</span>What a day looks like</h2>
-    <p>We will not plan. Roughly: I wake before the sun. There is tea. We walk. The <span class="odia">haat<span class="odia-tooltip">weekly market</span></span>, if it is a Tuesday. The mandir in the evening where the community gathers and I sit on the committee that plans the next festival. An auto to the next village costs twenty rupees. If there is a wedding we will help with the wedding. If someone's buffalo has calved we will go look.</p>
-
-    <div class="photo-strip-3">
-      <div class="photo-frame"><img src={`${base}photos/05-cooking-friends.jpeg`} alt="Friends cooking in the open" /><div class="caption">cooking · outside · afternoon</div></div>
-      <div class="photo-frame"><img src={`${base}photos/13-temple-collage.jpeg`} alt="Temple at dusk" /><div class="caption">the mandir · dusk</div></div>
-      <div class="photo-frame"><img src={`${base}photos/07-sunset-tree.jpeg`} alt="Sunset from the field" /><div class="caption">sunset · from the field</div></div>
-    </div>
-
-    <h2><span class="ornament">iv.</span>What I ask of you</h2>
-    <p>Come without a camera pointed at poverty. Come with a notebook if you write. Come willing to eat what is cooked, walk where we walk, sleep in a room that is clean but not designed. Stay three days, or ten, or a month — you propose, I respond. There is no price list. We will work it out like two adults writing letters.</p>
-
-    <div class="write-block">
-      <div class="write-label">§ Write to me</div>
-      <p>Tell me your name, where you are writing from, who you are, roughly when you would like to come, and — why this village, why now.</p>
-      <a class="write-cta" href="mailto:chandanpanda615@gmail.com?subject=I%20would%20like%20to%20visit%20Saranagada">write a letter →</a>
-    </div>
-
-    <div class="signoff">
-      yours, from a desk in Bangalore,<br />
-      <span class="signoff-meta">· written April 2026 · first guest, after November 2027 ·</span>
-    </div>
-
-  </div>
-</article>
-
+    <section class="invitation-panel">
+      <div>
+        <p class="section-kicker">What I ask of you</p>
+        <h2>Come without a camera pointed at poverty.</h2>
+        <p>
+          Come with a notebook if you write. Come willing to eat what is cooked,
+          walk where we walk, sleep in a room that is clean but not designed.
+          Stay three days, or ten, or a month. You propose; I respond.
+        </p>
+      </div>
+      <a class="primary-link" href="mailto:chandanpanda615@gmail.com?subject=I%20would%20like%20to%20visit%20Saranagada">Write a letter</a>
+    </section>
+  </article>
 </Base>
 
 <style>
-.letter { max-width: 720px; margin: 0 auto; }
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 88px;
+}
 
-.hero-band { margin-bottom: 48px; }
-.hero-frame { position: relative; aspect-ratio: 16 / 7; overflow: hidden; }
-.hero-frame img { width: 100%; height: 100%; object-fit: cover; }
-.coord {
+.home-hero {
+  position: relative;
+  min-height: 70svh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--forest-deep);
+}
+
+.home-hero > img {
   position: absolute;
-  bottom: 12px;
-  left: 16px;
-  font-family: var(--mono);
-  font-size: var(--fs-xxs);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(244,236,220,0.85);
-  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-.overprint {
+
+.hero-shade {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: var(--hand);
-  font-size: clamp(20px, 3.5vw, 34px);
-  color: #f4ecdc;
-  text-align: center;
-  line-height: 1.4;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.55);
-  width: 90%;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(16, 38, 31, 0.88), rgba(16, 38, 31, 0.35) 55%, rgba(16, 38, 31, 0.12)),
+    linear-gradient(0deg, rgba(16, 38, 31, 0.72), rgba(16, 38, 31, 0.08));
 }
 
-.letter-body { padding: 0 4px; }
-
-.salutation {
-  font-family: var(--hand);
-  font-size: var(--fs-xl);
-  color: var(--ink-soft);
-  margin-bottom: 24px;
+.hero-content {
+  position: relative;
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 96px 0 82px;
+  color: var(--paper-soft);
 }
-.lede { font-size: var(--fs-md); line-height: 1.75; }
 
-h2 {
-  font-size: var(--fs-lg);
+.hero-content h1 {
+  max-width: 720px;
+  margin-bottom: 22px;
+  font-size: var(--fs-3xl);
+  line-height: 0.96;
   font-weight: 500;
-  margin: 40px 0 14px;
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: 8px;
 }
 
-.photo-strip-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin: 28px 0;
+.hero-content p:not(.eyebrow) {
+  max-width: 560px;
+  font-size: var(--fs-lg);
+  color: rgba(255, 250, 240, 0.88);
 }
-.photo-strip-2 .photo-frame { aspect-ratio: 4/3; }
 
-.photo-strip-3 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
-  margin: 28px 0;
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
 }
-.photo-strip-3 .photo-frame { aspect-ratio: 4/3; }
 
-.wide-frame { aspect-ratio: 16/5; margin: 28px 0; }
-
-.write-block {
-  margin: 44px 0;
-  padding: 24px 28px;
-  background: var(--paper-deep);
-  border-left: 3px solid var(--accent);
-}
-.write-label {
-  font-family: var(--mono);
-  font-size: var(--fs-xxs);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  margin-bottom: 10px;
-}
-.write-cta {
-  display: inline-block;
+.hero-coordinates {
+  position: absolute;
+  right: max(20px, calc((100vw - 1180px) / 2));
+  bottom: 28px;
+  color: rgba(255, 250, 240, 0.72);
   font-family: var(--mono);
   font-size: var(--fs-xs);
-  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent);
-  border-bottom: 1px solid var(--accent);
-  padding-bottom: 2px;
-  margin-top: 8px;
 }
-.write-cta:hover { text-decoration: none; opacity: 0.75; }
 
-.signoff {
-  font-style: italic;
-  font-size: var(--fs-md);
-  margin: 48px 0 20px;
-  color: var(--ink-soft);
-  line-height: 1.8;
+.letter-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 56px;
+  align-items: start;
 }
-.signoff-meta {
+
+.intro-copy {
+  max-width: 760px;
+}
+
+.lede {
+  font-size: var(--fs-xl);
+  line-height: 1.45;
+  color: var(--forest-deep);
+}
+
+.arrival-notes {
+  display: grid;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.arrival-notes div {
+  padding: 22px;
+  background: rgba(255, 250, 240, 0.76);
+}
+
+.arrival-notes span {
   display: block;
+  margin-bottom: 7px;
   font-family: var(--mono);
-  font-size: var(--fs-xxs);
-  letter-spacing: 0.12em;
+  font-size: var(--fs-xs);
+  color: var(--soil);
   text-transform: uppercase;
-  color: var(--ink-faint);
-  font-style: normal;
-  margin-top: 8px;
 }
 
-@media (max-width: 600px) {
-  .photo-strip-2, .photo-strip-3 { grid-template-columns: 1fr; }
-  .wide-frame { aspect-ratio: 4/3; }
-  .hero-frame { aspect-ratio: 4/3; }
+.arrival-notes strong {
+  display: block;
+  font-weight: 500;
+  color: var(--forest);
+}
+
+.identity-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1fr);
+  gap: 56px;
+  align-items: center;
+}
+
+.identity-copy h2,
+.plainly h2,
+.day-heading h2,
+.invitation-panel h2 {
+  font-size: var(--fs-2xl);
+  line-height: 1.12;
+  font-weight: 500;
+  color: var(--forest-deep);
+}
+
+.portrait-stack {
+  display: grid;
+  grid-template-columns: 0.86fr 1fr;
+  align-items: end;
+  gap: 16px;
+}
+
+.portrait-stack .tall {
+  aspect-ratio: 4 / 5;
+}
+
+.portrait-stack .low {
+  aspect-ratio: 4 / 3;
+  margin-bottom: 42px;
+}
+
+.plainly {
+  background: var(--forest-deep);
+  color: var(--paper-soft);
+}
+
+.plainly-inner {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.86fr 1fr;
+  gap: 64px;
+  padding: 88px 0;
+}
+
+.plainly h2 {
+  color: var(--paper-soft);
+}
+
+.plainly .section-kicker {
+  color: var(--marigold);
+}
+
+.plainly-text {
+  color: rgba(255, 250, 240, 0.82);
+}
+
+.plainly .odia {
+  border-bottom-color: var(--marigold);
+}
+
+.photo-river {
+  display: grid;
+  grid-template-columns: 1.3fr 0.8fr 0.9fr;
+  gap: 16px;
+  align-items: end;
+}
+
+.photo-river .media-frame:first-child {
+  aspect-ratio: 16 / 9;
+}
+
+.photo-river .media-frame:nth-child(2),
+.photo-river .media-frame:nth-child(3) {
+  aspect-ratio: 4 / 5;
+}
+
+.day-section {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 54px;
+}
+
+.day-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line-strong);
+  border-left: 1px solid var(--line-strong);
+}
+
+.day-list div {
+  min-height: 210px;
+  padding: 26px;
+  border-right: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line-strong);
+  background: rgba(255, 250, 240, 0.5);
+}
+
+.day-list span {
+  display: block;
+  margin-bottom: 26px;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  color: var(--soil);
+}
+
+.day-list h3 {
+  margin-bottom: 10px;
+  font-size: var(--fs-lg);
+  color: var(--forest);
+}
+
+.day-list p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.invitation-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 40px;
+  align-items: end;
+  padding: 44px;
+  background:
+    linear-gradient(135deg, rgba(47, 111, 115, 0.12), rgba(211, 155, 49, 0.14)),
+    rgba(255, 250, 240, 0.78);
+  border: 1px solid var(--line);
+}
+
+.invitation-panel p {
+  max-width: 720px;
+}
+
+@media (max-width: 900px) {
+  .home {
+    gap: 64px;
+  }
+
+  .hero-content h1 {
+    font-size: var(--fs-2xl);
+  }
+
+  .hero-content p:not(.eyebrow),
+  .lede {
+    font-size: var(--fs-md);
+  }
+
+  .letter-intro,
+  .identity-grid,
+  .plainly-inner,
+  .day-section,
+  .invitation-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .arrival-notes {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .photo-river {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-river .media-frame,
+  .photo-river .media-frame:first-child,
+  .photo-river .media-frame:nth-child(2),
+  .photo-river .media-frame:nth-child(3) {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 620px) {
+  .home-hero {
+    min-height: 68svh;
+  }
+
+  .hero-content {
+    width: min(100% - 28px, 1180px);
+    padding: 72px 0 74px;
+  }
+
+  .hero-coordinates {
+    left: 14px;
+    right: auto;
+    bottom: 18px;
+  }
+
+  .arrival-notes,
+  .portrait-stack,
+  .day-list {
+    grid-template-columns: 1fr;
+  }
+
+  .portrait-stack .low {
+    margin-bottom: 0;
+  }
+
+  .identity-copy h2,
+  .plainly h2,
+  .day-heading h2,
+  .invitation-panel h2 {
+    font-size: var(--fs-xl);
+  }
+
+  .invitation-panel {
+    padding: 28px;
+  }
 }
 </style>

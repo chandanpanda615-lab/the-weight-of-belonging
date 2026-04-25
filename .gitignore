@@ -12,6 +12,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# local preview screenshots
+redesign-*.png
+site-preview-*.png
 
 # environment variables
 .env
