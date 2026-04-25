@@ -25,3 +25,6 @@ site-preview-*.png
 
 # jetbrains setting folder
 .idea/
+
+# claude code worktrees
+.claude/

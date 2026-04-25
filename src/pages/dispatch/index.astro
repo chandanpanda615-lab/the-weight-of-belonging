@@ -38,7 +38,7 @@ const latest = issues[0];
           <span class="text-link">Read the essay</span>
         </div>
         <figure class="media-frame">
-          <img src={pathFor(latest.data.heroPhoto)} alt={latest.data.heroAlt} />
+          <img src={pathFor(latest.data.heroPhoto)} alt={latest.data.heroAlt} loading="eager" fetchpriority="high" decoding="async" />
         </figure>
       </a>
     )}
@@ -47,7 +47,7 @@ const latest = issues[0];
       {issues.map((issue) => (
         <a href={pathFor(`dispatch/${issue.id}`)} class="issue-card">
           <figure>
-            <img src={pathFor(issue.data.heroPhoto)} alt={issue.data.heroAlt} />
+            <img src={pathFor(issue.data.heroPhoto)} alt={issue.data.heroAlt} loading="lazy" decoding="async" />
           </figure>
           <div>
             <p class="meta-line">Vol. {issue.data.vol} · No. {issue.data.issue} · {issue.data.date}</p>

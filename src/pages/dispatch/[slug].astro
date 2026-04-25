@@ -21,7 +21,7 @@ const { title, vol, issue: num, date, heroPhoto, heroAlt, heroCaption, lede } = 
 <Base title={title} description={lede} image={heroPhoto}>
   <article class="dispatch-article">
     <header class="article-hero full-bleed">
-      <img src={pathFor(heroPhoto)} alt={heroAlt} />
+      <img src={pathFor(heroPhoto)} alt={heroAlt} loading="eager" fetchpriority="high" decoding="async" />
       <div class="article-shade"></div>
       <div class="article-hero-inner">
         <a class="back-link" href={pathFor("dispatch")}>All dispatches</a>
@@ -51,7 +51,7 @@ const { title, vol, issue: num, date, heroPhoto, heroAlt, heroCaption, lede } = 
         <p>
           If you would like to stay in this village for some days, write to me.
           There is no price list, no package. You propose; I respond. First guest,
-          after November 2027.
+          after November 2028.
         </p>
       </div>
       <a class="primary-link" href="mailto:chandanpanda615@gmail.com?subject=I%20would%20like%20to%20visit%20Saranagada">Write a letter</a>

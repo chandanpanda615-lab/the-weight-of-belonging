@@ -19,6 +19,6 @@ The boys who stopped going to the fields did not stop because they are lazy. The
 
 What the city does not tell you is what you leave behind when you leave. Not the village — the village stays. What you leave behind is the ability to be bored in a way that is productive. The ability to sit on a *charpai* in the afternoon and watch the clouds and think nothing and be replenished. The boys who come back from Surat cannot sit still anymore. They have brought the city's restlessness home with them and it has no outlet here and it turns, slowly, into something worse.
 
-I know this because I have it too. I sit at my desk in Bangalore and I think about the river and I cannot go. When I will go, in November of next year, I do not know if I will be able to be still again. I do not know if the village will recognize me or if I will recognize it.
+I know this because I have it too. I sit at my desk in Bangalore and I think about the river and I cannot go. When I will go, at the end of next year, I do not know if I will be able to be still again. I do not know if the village will recognize me or if I will recognize it.
 
 This is the question underneath the invitation I have written. Not: come and see a beautiful village. But: come and help me remember how to be in it.

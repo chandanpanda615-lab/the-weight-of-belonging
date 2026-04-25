@@ -139,21 +139,25 @@ select {
 .brand {
   display: inline-flex;
   flex-direction: column;
-  line-height: 1;
+  line-height: 1.1;
 }
 
-.brand-primary {
-  font-family: var(--hand);
-  font-size: var(--fs-lg);
+.brand-name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: var(--fs-md);
   color: var(--forest-deep);
+  letter-spacing: 0.005em;
 }
 
-.brand-secondary {
-  margin-top: 3px;
+.brand-imprint {
+  margin-top: 6px;
   font-family: var(--mono);
   font-size: var(--fs-xxs);
   color: var(--soil);
   text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .site-nav {
@@ -292,7 +296,9 @@ main {
   z-index: 6;
   display: none;
   transform: translateX(-50%);
-  white-space: nowrap;
+  width: max-content;
+  max-width: min(220px, calc(100vw - 32px));
+  white-space: normal;
   background: var(--forest-deep);
   color: var(--paper-soft);
   padding: 5px 9px;
@@ -300,6 +306,7 @@ main {
   font-size: var(--fs-xxs);
   font-style: normal;
   text-transform: uppercase;
+  line-height: 1.4;
 }
 
 .odia:hover .odia-tooltip,

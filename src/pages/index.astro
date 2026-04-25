@@ -4,6 +4,20 @@ import Base from "../layouts/Base.astro";
 const base = import.meta.env.BASE_URL;
 const basePath = base.endsWith("/") ? base : `${base}/`;
 const pathFor = (path = "") => `${basePath}${path.replace(/^\/+/, "")}`;
+
+const now = new Date();
+const articleshipEnds = new Date(2027, 11, 1); // Dec 2027
+const doorOpens = new Date(2028, 10, 1);       // Nov 2028
+const monthYear = new Intl.DateTimeFormat("en", { month: "long", year: "numeric" }).format(now);
+
+let stamp: string;
+if (now < articleshipEnds) {
+  stamp = `Bangalore · ${monthYear} → Saranagada · Nov 2028`;
+} else if (now < doorOpens) {
+  stamp = `Saranagada · ${monthYear} → door opens Nov 2028`;
+} else {
+  stamp = `Saranagada · the door is open`;
+}
 ---
 <Base
   title="The Letter"
@@ -12,14 +26,14 @@ const pathFor = (path = "") => `${basePath}${path.replace(/^\/+/, "")}`;
 >
   <article class="home">
     <section class="home-hero full-bleed" aria-label="The Weight of Belonging">
-      <img src={pathFor("photos/01-river-fisherman.jpeg")} alt="Red-soil river, fisherman with bamboo net, Saranagada" />
+      <img src={pathFor("photos/01-river-fisherman.jpeg")} alt="Red-soil river, fisherman with bamboo net, Saranagada" loading="eager" fetchpriority="high" decoding="async" />
       <div class="hero-shade"></div>
       <div class="hero-content">
         <p class="eyebrow">Saranagada · Kandhamal · Odisha</p>
         <h1>The Weight of Belonging</h1>
         <p>
           This is not a tour. There is a village. I would like to host you there,
-          slowly, after November 2027.
+          slowly, after November 2028.
         </p>
         <div class="hero-actions">
           <a class="primary-link" href="#letter">Read the letter</a>
@@ -31,6 +45,7 @@ const pathFor = (path = "") => `${basePath}${path.replace(/^\/+/, "")}`;
 
     <section id="letter" class="letter-intro">
       <div class="intro-copy">
+        <p class="status-stamp">{stamp}</p>
         <p class="section-kicker">Dear stranger</p>
         <p class="lede">
           There is a village in <span class="odia">Kandhamal<span class="odia-tooltip">Kandhamal, Odisha</span></span>
@@ -38,14 +53,14 @@ const pathFor = (path = "") => `${basePath}${path.replace(/^\/+/, "")}`;
           and there is me, writing to you from Bangalore while I finish my articleship.
         </p>
         <p>
-          When that is done, in November of next year, I will be home. If you would like
-          to come then, I would like to host you.
+          I finish my articleship at the end of 2027 and my CA Final exams in November 2028.
+          After that, I will be free. If you would like to come then, I would like to host you.
         </p>
       </div>
       <aside class="arrival-notes" aria-label="Visit notes">
         <div>
           <span>First guest</span>
-          <strong>After Nov 2027</strong>
+          <strong>After Nov 2028</strong>
         </div>
         <div>
           <span>Stay</span>
@@ -72,10 +87,10 @@ const pathFor = (path = "") => `${basePath}${path.replace(/^\/+/, "")}`;
       </div>
       <div class="portrait-stack">
         <figure class="media-frame tall">
-          <img src={pathFor("photos/12-hills-portrait.jpeg")} alt="Hills of Kandhamal" />
+          <img src={pathFor("photos/12-hills-portrait.jpeg")} alt="Hills of Kandhamal" loading="lazy" decoding="async" />
         </figure>
         <figure class="media-frame low">
-          <img src={pathFor("photos/10-paddy-path.jpeg")} alt="Paddy fields with a thin path" />
+          <img src={pathFor("photos/10-paddy-path.jpeg")} alt="Paddy fields with a thin path" loading="lazy" decoding="async" />
         </figure>
       </div>
     </section>
@@ -112,13 +127,13 @@ const pathFor = (path = "") => `${basePath}${path.replace(/^\/+/, "")}`;
 
     <section class="photo-river" aria-label="Photos from Saranagada">
       <figure class="media-frame">
-        <img src={pathFor("photos/11-wide-fields.jpeg")} alt="Wide fields of Saranagada" />
+        <img src={pathFor("photos/11-wide-fields.jpeg")} alt="Wide fields of Saranagada" loading="lazy" decoding="async" />
       </figure>
       <figure class="media-frame">
-        <img src={pathFor("photos/13-temple-collage.jpeg")} alt="Temple at dusk" />
+        <img src={pathFor("photos/13-temple-collage.jpeg")} alt="Temple at dusk" loading="lazy" decoding="async" />
       </figure>
       <figure class="media-frame">
-        <img src={pathFor("photos/07-sunset-tree.jpeg")} alt="Sunset from the field" />
+        <img src={pathFor("photos/07-sunset-tree.jpeg")} alt="Sunset from the field" loading="lazy" decoding="async" />
       </figure>
     </section>
 
@@ -246,6 +261,18 @@ const pathFor = (path = "") => `${basePath}${path.replace(/^\/+/, "")}`;
 
 .intro-copy {
   max-width: 760px;
+}
+
+.status-stamp {
+  display: inline-block;
+  margin-bottom: 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .lede {

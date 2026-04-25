@@ -11,7 +11,7 @@ const pathFor = (path = "") => `${basePath}${path.replace(/^\/+/, "")}`;
   image="photos/14-mist-cliff.jpeg"
 >
   <section class="not-found full-bleed">
-    <img src={pathFor("photos/14-mist-cliff.jpeg")} alt="Mist over a cliff in Kandhamal" />
+    <img src={pathFor("photos/14-mist-cliff.jpeg")} alt="Mist over a cliff in Kandhamal" loading="eager" fetchpriority="high" decoding="async" />
     <div class="not-found-shade"></div>
     <div class="not-found-inner">
       <p class="section-kicker">404</p>
